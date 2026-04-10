@@ -45,3 +45,17 @@ class TestRealExamples:
         doc = markdown_to_docx(dashboard_markdown)
         assert doc is not None
         assert len(doc.paragraphs) > 0
+
+    def test_astronomia_docx(self, astronomia_markdown):
+        if astronomia_markdown is None:
+            pytest.skip("guia_astronomia_observacional.md not found")
+        doc = markdown_to_docx(astronomia_markdown)
+        assert doc is not None
+        assert len(doc.paragraphs) > 0
+
+    def test_culinaria_docx(self, culinaria_markdown):
+        if culinaria_markdown is None:
+            pytest.skip("atlas_tecnicas_culinarias.md not found")
+        doc = markdown_to_docx(culinaria_markdown)
+        assert doc is not None
+        assert len(doc.paragraphs) > 0

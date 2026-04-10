@@ -45,3 +45,21 @@ def dashboard_markdown() -> str | None:
     if path.exists():
         return path.read_text(encoding="utf-8-sig")
     return None
+
+
+@pytest.fixture
+def astronomia_markdown() -> str | None:
+    """Load guia_astronomia_observacional.md if available."""
+    path = EXAMPLES_DIR / "guia_astronomia_observacional.md"
+    if path.exists():
+        return path.read_text(encoding="utf-8-sig")
+    return None
+
+
+@pytest.fixture
+def culinaria_markdown() -> str | None:
+    """Load atlas_tecnicas_culinarias.md if available."""
+    path = EXAMPLES_DIR / "atlas_tecnicas_culinarias.md"
+    if path.exists():
+        return path.read_text(encoding="utf-8-sig")
+    return None

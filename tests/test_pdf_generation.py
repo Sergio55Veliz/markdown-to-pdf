@@ -45,3 +45,15 @@ class TestRealExamples:
             pytest.skip("dashboard_riesgo_juridico.md not found")
         html = markdown_to_html(dashboard_markdown)
         assert "<h" in html
+
+    def test_astronomia_html(self, astronomia_markdown):
+        if astronomia_markdown is None:
+            pytest.skip("guia_astronomia_observacional.md not found")
+        html = markdown_to_html(astronomia_markdown)
+        assert "<h" in html
+
+    def test_culinaria_html(self, culinaria_markdown):
+        if culinaria_markdown is None:
+            pytest.skip("atlas_tecnicas_culinarias.md not found")
+        html = markdown_to_html(culinaria_markdown)
+        assert "<h" in html
