@@ -1,21 +1,29 @@
 # ──────────────────────────────────────────────────────────────────
-# Requirements — scripts/pdf_generator/
-# Entorno conda: pdf_gen
-# Generado con: conda run -n pdf_gen pip list --format=freeze
+# Requirements — markdown-to-pdf
 # ──────────────────────────────────────────────────────────────────
 
 # Parsing / renderizado de Markdown
-markdown-it-py==4.0.0        # motor de Markdown (generate_pdfs.py, generate_word.py)
-mdit-py-plugins==0.5.0       # plugin dollarmath para ecuaciones $...$ y $$...$$
+markdown-it-py>=4.0.0        # motor de Markdown
+mdit-py-plugins>=0.5.0       # plugin dollarmath para ecuaciones $...$ y $$...$$
 
 # HTML / XML
-beautifulsoup4==4.14.3       # parseo de HTML generado (bs4.BeautifulSoup, Tag, NavigableString)
-lxml==6.0.2                  # parser XML/HTML para bs4 y manipulación OOXML directa
+beautifulsoup4>=4.14.0       # parseo de HTML generado
+lxml>=6.0.0                  # parser XML/HTML para bs4 y manipulación OOXML directa
 
 # Generación PDF
-playwright==1.58.0           # renderizado Chromium headless → PDF (generate_pdfs.py)
-PyMuPDF==1.27.2.2            # lectura de PDF para outline/bookmarks y validación de enlaces
+playwright>=1.50.0           # renderizado Chromium headless → PDF
+PyMuPDF>=1.27.0              # lectura de PDF para outline/bookmarks y validación de enlaces
 
 # Generación DOCX
-python-docx==1.2.0           # creación de documentos Word (.docx) (generate_word.py)
-latex2mathml==3.79.0         # conversión LaTeX → MathML → OMML para ecuaciones en DOCX
+python-docx>=1.2.0           # creación de documentos Word (.docx)
+latex2mathml>=3.79.0         # conversión LaTeX → MathML → OMML para ecuaciones en DOCX
+
+# Syntax highlighting
+Pygments>=2.18.0             # resaltado de código en bloques fenced
+
+# Descarga de fuentes
+requests>=2.31.0             # descarga de fuentes Inter woff2
+
+# Testing
+pytest>=8.0.0                # framework de testing
+pytest-cov>=5.0.0            # cobertura de código
