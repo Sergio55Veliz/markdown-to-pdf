@@ -27,3 +27,21 @@ class TestMarkdownToDocx:
     def test_empty_input(self):
         doc = markdown_to_docx("")
         assert doc is not None
+
+
+class TestRealExamples:
+    """Integration-style checks on real example Markdown files."""
+
+    def test_propuesta_docx(self, propuesta_markdown):
+        if propuesta_markdown is None:
+            pytest.skip("propuesta_nuevas_features.md not found")
+        doc = markdown_to_docx(propuesta_markdown)
+        assert doc is not None
+        assert len(doc.paragraphs) > 0
+
+    def test_dashboard_docx(self, dashboard_markdown):
+        if dashboard_markdown is None:
+            pytest.skip("dashboard_riesgo_juridico.md not found")
+        doc = markdown_to_docx(dashboard_markdown)
+        assert doc is not None
+        assert len(doc.paragraphs) > 0

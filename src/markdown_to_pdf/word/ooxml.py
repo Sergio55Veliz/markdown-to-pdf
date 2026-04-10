@@ -12,11 +12,7 @@ from docx.oxml.ns import qn
 from docx.oxml import OxmlElement
 
 from markdown_to_pdf.constants import (
-    rgb_docx,
     rgb_hex_upper,
-    COLOR_H1_BORDER,
-    COLOR_H2_BORDER,
-    WordFonts,
 )
 
 
@@ -69,42 +65,6 @@ def set_para_space_after(para, pt: float) -> None:
         spacing = OxmlElement("w:spacing")
         pPr.append(spacing)
     spacing.set(qn("w:after"), str(int(pt * 20)))
-
-
-def set_para_page_break_before(para) -> None:
-    """Force a page break immediately before the given paragraph."""
-    pPr = para._p.get_or_add_pPr()
-    pb = OxmlElement("w:pageBreakBefore")
-    pb.set(qn("w:val"), "1")
-    pPr.append(pb)
-
-
-# ── Heading border helpers ────────────────────────────────────────────────────
-
-def set_h1_bottom_border(para) -> None:
-    """Add H1-weight bottom border (2.25 pt) to a paragraph."""
-    pPr = para._p.get_or_add_pPr()
-    pBdr = OxmlElement("w:pBdr")
-    bottom = OxmlElement("w:bottom")
-    bottom.set(qn("w:val"),   "single")
-    bottom.set(qn("w:sz"),    "18")
-    bottom.set(qn("w:space"), "4")
-    bottom.set(qn("w:color"), rgb_hex_upper(COLOR_H1_BORDER))
-    pBdr.append(bottom)
-    pPr.append(pBdr)
-
-
-def set_h2_bottom_border(para) -> None:
-    """Add H2-weight bottom border (0.75 pt) to a paragraph."""
-    pPr = para._p.get_or_add_pPr()
-    pBdr = OxmlElement("w:pBdr")
-    bottom = OxmlElement("w:bottom")
-    bottom.set(qn("w:val"),   "single")
-    bottom.set(qn("w:sz"),    "6")
-    bottom.set(qn("w:space"), "4")
-    bottom.set(qn("w:color"), rgb_hex_upper(COLOR_H2_BORDER))
-    pBdr.append(bottom)
-    pPr.append(pBdr)
 
 
 # ── Cell helpers ──────────────────────────────────────────────────────────────

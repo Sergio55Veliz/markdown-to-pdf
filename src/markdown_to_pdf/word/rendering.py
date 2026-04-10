@@ -24,6 +24,7 @@ from markdown_to_pdf.constants import (
     WordFonts,
     FONT_BODY_PT,
     FONT_CODE_PT,
+    PARA_SPACING_PT,
     HEADING_BOLD,
     HEADING_COLORS,
     EMOJI_RE,
@@ -252,7 +253,7 @@ def render_paragraph(doc: Document, tag: Tag,
     """Render a ``<p>`` tag as a styled body paragraph."""
     para = doc.add_paragraph()
     no_space_before(para)
-    set_para_space_after(para, 7)
+    set_para_space_after(para, PARA_SPACING_PT)
 
     for child in tag.children:
         inline_nodes_to_runs(para, child, color=extra_color or COLOR_BODY)
@@ -687,7 +688,7 @@ def walk_block(doc: Document, node) -> None:
         text = str(node).strip()
         if text:
             para = doc.add_paragraph(text)
-            set_para_space_after(para, 7)
+            set_para_space_after(para, PARA_SPACING_PT)
         return
 
     tag_name = node.name
@@ -721,4 +722,4 @@ def walk_block(doc: Document, node) -> None:
         text = node.get_text(" ", strip=True)
         if text:
             para = doc.add_paragraph(text)
-            set_para_space_after(para, 7)
+            set_para_space_after(para, PARA_SPACING_PT)

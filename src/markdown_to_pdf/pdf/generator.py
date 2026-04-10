@@ -19,6 +19,7 @@ try:
     from pygments import highlight as _pygments_highlight
     from pygments.lexers import get_lexer_by_name as _get_lexer_by_name
     from pygments.formatters import HtmlFormatter as _HtmlFormatter
+    from pygments.util import ClassNotFound as _ClassNotFound
     _PYGMENTS_AVAILABLE = True
 except ImportError:
     _PYGMENTS_AVAILABLE = False
@@ -101,6 +102,9 @@ def _apply_syntax_highlighting(html_str: str) -> str:
         raw_code = html_lib.unescape(m.group(2))
         try:
             lexer = _get_lexer_by_name(lang, stripall=False)
+        except _ClassNotFound:
+            return m.group(0)
+        try:
             highlighted = _pygments_highlight(raw_code, lexer, formatter)
             return f'<code class="language-{lang}">{highlighted}</code>'
         except Exception:
@@ -203,7 +207,8 @@ async def generate_pdf(html_content: str, output_path: Path, doc_title: str = ""
     await _render_pdf(html_content, output_path)
     headings = extract_headings_from_html(html_content)
     add_pdf_outline(output_path, headings)
-    print(f"  ✓ PDF saved  →  {output_path}")
+    label = f" — {doc_title}" if doc_title else ""
+    print(f"  ✓ PDF saved{label}  →  {output_path}")
 
 
 def generate_pdf_from_file(

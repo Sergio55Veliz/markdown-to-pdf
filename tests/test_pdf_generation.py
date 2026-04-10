@@ -29,3 +29,19 @@ class TestMarkdownToHtml:
     def test_empty_input(self):
         html = markdown_to_html("")
         assert isinstance(html, str)
+
+
+class TestRealExamples:
+    """Integration-style HTML checks on real example Markdown files."""
+
+    def test_propuesta_html(self, propuesta_markdown):
+        if propuesta_markdown is None:
+            pytest.skip("propuesta_nuevas_features.md not found")
+        html = markdown_to_html(propuesta_markdown)
+        assert "<h" in html
+
+    def test_dashboard_html(self, dashboard_markdown):
+        if dashboard_markdown is None:
+            pytest.skip("dashboard_riesgo_juridico.md not found")
+        html = markdown_to_html(dashboard_markdown)
+        assert "<h" in html
