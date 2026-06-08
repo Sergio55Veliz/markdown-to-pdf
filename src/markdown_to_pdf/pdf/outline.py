@@ -41,6 +41,11 @@ def add_pdf_outline(pdf_path: Path, headings: list[tuple[int, str]]) -> None:
                 break
 
     if toc:
+        min_level = min(item[0] for item in toc)
+        if min_level > 1:
+            for item in toc:
+                item[0] = item[0] - min_level + 1
+
         normalized: list[list] = [toc[0][:]]
         for entry in toc[1:]:
             lvl, ttl, pg = entry

@@ -30,24 +30,6 @@ def sample_markdown() -> str:
 
 
 @pytest.fixture
-def propuesta_markdown() -> str | None:
-    """Load propuesta_nuevas_features.md if available."""
-    path = EXAMPLES_DIR / "propuesta_nuevas_features.md"
-    if path.exists():
-        return path.read_text(encoding="utf-8-sig")
-    return None
-
-
-@pytest.fixture
-def dashboard_markdown() -> str | None:
-    """Load dashboard_riesgo_juridico.md if available."""
-    path = EXAMPLES_DIR / "dashboard_riesgo_juridico.md"
-    if path.exists():
-        return path.read_text(encoding="utf-8-sig")
-    return None
-
-
-@pytest.fixture
 def astronomia_markdown() -> str | None:
     """Load guia_astronomia_observacional.md if available."""
     path = EXAMPLES_DIR / "guia_astronomia_observacional.md"

@@ -9,6 +9,7 @@ from __future__ import annotations
 
 import copy
 import re
+import urllib.parse
 
 from lxml import etree as _lxml_etree
 from bs4 import NavigableString, Tag
@@ -192,7 +193,7 @@ def inline_nodes_to_runs(para, node, bold=False, italic=False, strike=False,
     if tag == "a":
         href = node.get("href", "")
         if href.startswith("#"):
-            anchor = href[1:]
+            anchor = urllib.parse.unquote(href[1:]) # decodifica la url
             hyperlink = OxmlElement("w:hyperlink")
             hyperlink.set(qn("w:anchor"), anchor)
             p_elem = para._p
